@@ -13,34 +13,36 @@ public class ID15ThreeSum {
 
         System.out.println(sb);
     }
-// https://leetcode.cn/problems/3sum/solutions/11525/3sumpai-xu-shuang-zhi-zhen-yi-dong-by-jyd/
+
+    // https://leetcode.cn/problems/3sum/solutions/11525/3sumpai-xu-shuang-zhi-zhen-yi-dong-by-jyd/
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
             Arrays.sort(nums);
+            int len = nums.length;
             List<List<Integer>> res = new ArrayList<>();
-            for (int k = 0; k < nums.length - 2; k++) {
-                if (nums[k] > 0) {
-                    break;
-                }
-                // 去重
-                if (k > 0 && nums[k] == nums[k - 1]) {
+            for (int i = 0; i < len - 2 && nums[i] <= 0; i++) {
+                if (i > 0 && nums[i] == nums[i - 1]) {
                     continue;
                 }
-                int left = k + 1, right = nums.length - 1;
-                while (left < right) {
-                    int sum = nums[k] + nums[left] + nums[right];
-                    if (sum < 0) {
-                        // 去重并且左指针右移
-                        while (left < right && nums[left] == nums[++left]) ;
-                    } else if (sum > 0) {
-                        while (left < right && nums[right] == nums[--right]) ;
+                int j = i + 1, k = len - 1;
+                while (j < k) {
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if (sum > 0) {
+                        --k;
+                    } else if (sum < 0) {
+                        ++j;
                     } else {
-                        res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[left], nums[right])));
-                        while (left < right && nums[left] == nums[++left]) ;
-                        while (left < right && nums[right] == nums[--right]) ;
+                        res.add(new ArrayList<>(Arrays.asList(nums[i], nums[j++], nums[k--])));
+                        while (j < k && nums[j] == nums[j - 1]) {
+                            j++;
+                        }
+                        while (j < k && nums[k] == nums[k + 1]) {
+                            k--;
+                        }
                     }
                 }
+
             }
             return res;
         }

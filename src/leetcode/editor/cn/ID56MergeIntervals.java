@@ -18,26 +18,19 @@ public class ID56MergeIntervals {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[][] merge(int[][] intervals) {
-            if (intervals.length == 1) {
-                return intervals;
+            if (intervals.length == 0) {
+                return new int[0][2];
             }
+            Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
             List<int[]> res = new ArrayList<>();
-
-            Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
-            int left = intervals[0][0], right = intervals[0][1];
-            for (int i = 1; i < intervals.length; i++) {
-                if (right >= intervals[i][0]) {
-					if ( right >= intervals[i][1]){
-						continue;
-					}
-					right = intervals[i][1];
-                } else {
+            for (int i = 0; i < intervals.length; i++) {
+                int left = intervals[i][0], right = intervals[i][1];
+                if (res.isEmpty() || res.get(res.size() - 1)[1] < left) {
                     res.add(new int[]{left, right});
-                    left = intervals[i][0];
-                    right = intervals[i][1];
+                } else {
+                    res.get(res.size() - 1)[1] = Math.max(res.get(res.size() - 1)[1], right);
                 }
             }
-			res.add(new int[]{left, right});
             return res.toArray(new int[res.size()][]);
         }
     }
