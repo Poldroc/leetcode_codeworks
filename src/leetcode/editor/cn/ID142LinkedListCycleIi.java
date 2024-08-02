@@ -28,37 +28,19 @@ public class ID142LinkedListCycleIi {
      */
     public class Solution {
         public ListNode detectCycle(ListNode head) {
-            if (head == null || head.next == null) {
-                return null;
-            }
-            ListNode slow = head, fast = head.next;
-            // 判断是否有环
-            while (fast != null && fast.next != null && slow != fast) {
-                slow = slow.next;
+            ListNode fast = head,slow = head;
+            while (true){
+                if (fast==null||fast.next==null) return null;
                 fast = fast.next.next;
-            }
-            if (fast == null || fast.next == null) {
-                return null;
-            }
-            // 计算环大小
-            int cnt = 1;
-            ListNode node = fast.next;
-            while (node != slow) {
-                node = node.next;
-                cnt++;
-            }
-            // fast先走cnt步，快慢指针相遇即为入口
-            slow = head;
-            fast = head;
-            for (int i = 0; i < cnt; i++) {
-                fast = fast.next;
-            }
-            while (slow != fast) {
                 slow = slow.next;
+                if (fast == slow) break;
+            }
+            fast =head;
+            while (slow!=fast){
                 fast = fast.next;
+                slow =slow.next;
             }
             return fast;
-
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

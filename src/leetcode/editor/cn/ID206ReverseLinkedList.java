@@ -36,6 +36,7 @@ class Solution {
 		}
 		return pre;
     }
+	// 1-2-3-4-5-null
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
