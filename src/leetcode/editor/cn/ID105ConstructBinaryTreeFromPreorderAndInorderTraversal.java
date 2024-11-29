@@ -46,7 +46,9 @@ public class ID105ConstructBinaryTreeFromPreorderAndInorderTraversal {
             if (preBegin >= preEnd || inBegin >= inEnd) {  // 不满足左闭右开，说明没有元素，返回空树
                 return null;
             }
+            // 前序遍历的第一个元素是根节点，找到根节点在中序遍历中的位置
             int rootIndex = map.get(preorder[preBegin]);
+            // 根据根节点在中序遍历中的位置，划分左右子树
             TreeNode root = new TreeNode(inorder[rootIndex]);
             int lenOfLeft = rootIndex - inBegin;  // 保存中序左子树个数，用来确定前序数列的个数
             root.left = findNode(preorder, preBegin + 1, preBegin + 1 + lenOfLeft, inorder, inBegin, rootIndex);

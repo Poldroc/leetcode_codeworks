@@ -22,16 +22,16 @@ public class ID347TopKFrequentElements {
             for (int num : nums) {
                 map.put(num, map.getOrDefault(num, 0) + 1);
             }
-            PriorityQueue<int[]> pq = new PriorityQueue<>((pair1, pair2) -> pair2[1] - pair1[1]);
-            //大顶堆需要对所有元素进行排序
-            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-                pq.add(new int[]{entry.getKey(), entry.getValue()});
+            PriorityQueue<int[]> queue = new PriorityQueue<>((pair1, pair2) -> pair2[1] - pair1[1]);
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()){
+                queue.add(new int[]{entry.getKey(),entry.getValue()});
             }
             int[] ans = new int[k];
-            for(int i=0;i<k;i++){//依次从队头弹出k个,就是出现频率前k高的元素
-                ans[i] = Objects.requireNonNull(pq.poll())[0];
+            for (int i = 0;i<k;i++){
+                ans[i] = Objects.requireNonNull(queue.poll())[0];
             }
             return ans;
+
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -15,6 +15,7 @@ public class ID309BestTimeToBuyAndSellStockWithCooldown{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxProfit(int[] prices) {
+		return 1;
 
     }
 }

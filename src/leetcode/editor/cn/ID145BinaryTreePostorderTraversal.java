@@ -14,23 +14,7 @@ public class ID145BinaryTreePostorderTraversal {
         System.out.println(sb);
     }
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
 //leetcode submit region begin(Prohibit modification and deletion)
 
         /**
@@ -54,28 +38,24 @@ public class ID145BinaryTreePostorderTraversal {
                 if (root == null) {
                     return result;
                 }
-                Deque<TreeNode> stack = new LinkedList<>();
-                // 后序遍历顺序 左-右-中 入栈顺序：中-左-右 出栈顺序：中-右-左， 最后翻转结果
-                stack.push(root);
-                while (!stack.isEmpty()) {
-                    TreeNode node = stack.peek();
-                    if (node != null) {
-                        stack.pop();
-
-                        stack.push(node);
-                        stack.push(null);
-                        if (node.right != null) stack.push(node.right);
-                        if (node.left != null) stack.push(node.left);
-                    } else {
-                        stack.pop();
-                        node = stack.peek();
-                        stack.pop();
-                        result.add(node.val);
-                    }
+                Deque<TreeNode> stack1 = new LinkedList<>();
+                // 后-右-左
+                Deque<TreeNode> stack2 = new LinkedList<>();
+                stack1.push(root);
+                while (!stack1.isEmpty()){
+                    TreeNode pop = stack1.pop();
+                    // 后
+                    stack2.push(pop);
+                    // stack1里面是左-右，弹出来就是右-左
+                    if (pop.left!=null) stack1.push(pop.left);
+                    if (pop.right!=null) stack1.push(pop.right);
+                }
+                while (!stack2.isEmpty()){
+                    result.add(stack2.pop().val);
                 }
                 return result;
             }
         }
 //leetcode submit region end(Prohibit modification and deletion)
-
     }
+

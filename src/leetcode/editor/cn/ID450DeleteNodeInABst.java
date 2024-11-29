@@ -31,6 +31,8 @@ public class ID450DeleteNodeInABst{
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
 		if (root==null) return root;
+		if (root.val > key) root.left = deleteNode(root.left, key);
+		if (root.val < key) root.right = deleteNode(root.right, key);
 		if (root.val==key){
 			// 其左孩子为空，右孩子不为空，删除节点，右孩子补位 ，返回右孩子为根节点
 			if (root.left==null) {
@@ -48,8 +50,7 @@ class Solution {
 				return root;
 			}
 		}
-		if (root.val > key) root.left = deleteNode(root.left, key);
-		if (root.val < key) root.right = deleteNode(root.right, key);
+
 		return root;
 
     }

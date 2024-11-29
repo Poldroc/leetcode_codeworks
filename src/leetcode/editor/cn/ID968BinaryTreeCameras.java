@@ -30,7 +30,7 @@ public class ID968BinaryTreeCameras{
  */
 class Solution {
     public int minCameraCover(TreeNode root) {
-
+		return 1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

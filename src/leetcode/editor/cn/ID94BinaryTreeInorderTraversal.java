@@ -31,6 +31,7 @@ public class ID94BinaryTreeInorderTraversal {
             this.left = left;
             this.right = right;
         }
+    }
 //leetcode submit region begin(Prohibit modification and deletion)
 
         /**
@@ -58,20 +59,22 @@ public class ID94BinaryTreeInorderTraversal {
                 Deque<TreeNode> stack = new LinkedList<>();
                 TreeNode cur = root;
                 while (cur != null || !stack.isEmpty()) {
-                    // 将树左面的节点压入
-                    if (cur != null) {
+                    // 沿着左子树向下，左子树的节点优先被访问
+                    while (cur != null) {
                         stack.push(cur);
                         cur = cur.left;
-                    } else { // 到最低层
-                        cur = stack.pop();
-                        result.add(cur.val);
-                        cur = cur.right;
                     }
+                    // 左子树访问完毕，访问根节点
+                    cur = stack.pop();
+                    // 访问根节点
+                    result.add(cur.val);
+                    // 访问右子树
+                    cur = cur.right;
                 }
                 return result;
             }
         }
-    }
+//    }
 //leetcode submit region end(Prohibit modification and deletion)
 
-}
+    }

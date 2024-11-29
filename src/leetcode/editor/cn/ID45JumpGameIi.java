@@ -29,18 +29,18 @@ public class ID45JumpGameIi {
             for (int i = 0; i < nums.length; i++) {
                 // 在可覆盖区域内更新最大的覆盖区域
                 maxDistance = Math.max(maxDistance, i + nums[i]);
-                // 说明再跳一步就到终点
+                // 说明在当前i，可跳到终点
                 if (maxDistance >= nums.length - 1) {
-                    count++;
-                    break;
+                    return count + 1;
                 }
-                // 说明当前覆盖的最大区域内 下一跳还是无法到达终点,次数+1
+                // 到达当前可覆盖的最大距离，就更新
                 if (i == curDistance) {
                     curDistance = maxDistance;
+                    // 到达新的当前可覆盖的最大距离，需要跳跃
                     count++;
                 }
             }
-            return count;
+            return 0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

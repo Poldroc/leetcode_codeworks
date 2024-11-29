@@ -15,7 +15,7 @@ public class ID332ReconstructItinerary{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<String> findItinerary(List<List<String>> tickets) {
-
+		return null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

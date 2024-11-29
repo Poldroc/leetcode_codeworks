@@ -49,18 +49,17 @@ public class ID144BinaryTreePreorderTraversal {
      */
     class Solution {
         public List<Integer> preorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            preorder(root,list);
-            return list;
-        }
-
-        public void preorder(TreeNode root, List<Integer> list) {
-            if (root == null) {
-                return;
+            List<Integer> result = new ArrayList<>();
+            if (root==null) return result;
+            Deque<TreeNode> stack = new LinkedList<>();
+            stack.push(root);
+            while (!stack.isEmpty()){
+                TreeNode pop = stack.pop();
+                result.add(pop.val);
+                if (pop.right!=null)stack.push(pop.right);
+                if (pop.left!=null) stack.push(pop.left);
             }
-            list.add(root.val);
-            preorder(root.left,list);
-            preorder(root.right,list);
+            return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

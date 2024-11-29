@@ -17,19 +17,19 @@ public class ID139WordBreak {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean wordBreak(String s, List<String> wordDict) {
-            // dp[i] : 字符串长度为i的话，dp[i]为true，表示可以拆分为一个或多个在字典中出现的单词。
-            HashSet<String> strings = new HashSet<>(wordDict);
-            boolean[] booleans = new boolean[s.length() + 1];
-            booleans[0] = true;
-
-            for (int i = 1; i < s.length() + 1; i++) {
-				for (int j = 0; j < i; j++) {
-					if (booleans[j]&&strings.contains(s.substring(j,i))){
-						booleans[i]=true;
-					}
-				}
+            HashSet<String> wordDicts = new HashSet<>(wordDict);
+            // dp[i] 是s的前i个可以由 wordDict 组成
+            boolean[] dp = new boolean[s.length() + 1];
+            dp[0] = true;
+            for (int i = 0; i < s.length()+1; i++) {
+                for (int j = 0; j < i; j++) {
+                    if (dp[j]&&wordDicts.contains(s.substring(j,i))){
+                        dp[i] = true;
+                    }
+                }
             }
-			return booleans[s.length()];
+            return dp[s.length()];
+
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

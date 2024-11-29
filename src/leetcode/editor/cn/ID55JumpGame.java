@@ -31,6 +31,7 @@ public class ID55JumpGame {
             }
             return false;
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

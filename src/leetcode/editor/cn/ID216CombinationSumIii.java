@@ -40,7 +40,7 @@ class Solution {
 		 *
 		 * 还需要的元素个数为: k - path.size();
 		 *
-		 * 在集合n中至多要从该起始位置 : n - (k - path.size()) + 1，开始遍历
+		 * 在集合n中至多要从该。                                                                                                                                                                   =起始位置 : n - (k - path.size()) + 1，开始遍历
 		 */
 		for (int i = startIndex; i <= 9 - (k - path.size()) + 1; i++) {
 			path.add(i);

@@ -18,10 +18,14 @@ class Solution {
 		// 按左边排序，不管右边顺序。相交的时候取最小的右边。
 		Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 		int count = 0;
+		int right = intervals[0][1];
 		for (int i = 1; i < intervals.length; i++) {
-			if (intervals[i][0]<intervals[i-1][1]){
-				intervals[i][1] = Math.min(intervals[i - 1][1], intervals[i][1]);
+			if (intervals[i][0] < right) {
 				count++;
+				// 取最小的右边，减小后续的相交概率，保证右边尽可能小
+				right = Math.min(right, intervals[i][1]);
+			} else {
+				right = intervals[i][1];
 			}
 		}
 		return count;

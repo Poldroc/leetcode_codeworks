@@ -15,7 +15,7 @@ public class ID16ThreeSumClosest{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
-
+		return 1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

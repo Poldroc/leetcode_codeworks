@@ -29,7 +29,7 @@ class Solution {
         dp[i][j]表示从数组的 [0, i] 这个子区间内挑选一些正整数
           每个数只能用一次，使得这些数的和恰好等于 j。
         */
-		int[][] dp = new int[nums.length][target + 1];
+		/*int[][] dp = new int[nums.length][target + 1];
 
 		for(int j = nums[0]; j <= target; j++){
 			dp[0][j] = nums[0];
@@ -44,7 +44,21 @@ class Solution {
 			}
 		}
 
-		return dp[len - 1][target] == target;
+		return dp[len - 1][target] == target;*/
+		boolean[] dp = new boolean[target+1];
+		dp[0] = true;
+		if (nums[0] <= target) {
+			dp[nums[0]] = true;
+		}
+		for (int i = 1;i<nums.length;i++){
+			for (int j = target;j>=nums[i];j--){
+				if (dp[target]){
+					return true;
+				}
+				dp[j] = dp[j]||dp[j-nums[i]];
+			}
+		}
+		return dp[target];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

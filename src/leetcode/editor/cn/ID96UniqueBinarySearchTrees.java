@@ -15,6 +15,7 @@ public class ID96UniqueBinarySearchTrees{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numTrees(int n) {
+		return 1;
 
 
     }
